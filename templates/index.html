@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subtitle Sentiment Analyzer</title>
+  <style>
+    #jsonOutput {
+      max-height: 300px;
+      overflow: auto;
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      margin-top: 1rem;
+    }
+    .chart-container {
+      width: 90%;
+      max-width: 700px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload Subtitle File</h1>
+
+  <<form id="uploadForm">
+  <input type="file" id="subtitleFile" accept=".srt,.txt" required />
+  <button type="submit">Analyze</button>
+  </form>
+
+  <div id="loader" style="display: none;">Analyzing... please wait</div>
+  <p id="totalLines"></p>S
+  <div class="chart-wrapper">
+    <div class="chart-box">
+      <canvas id="barChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <canvas id="pieChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+  <pre id="jsonOutput"></pre>
+
+  <h3>Preview of Cleaned Text + Emotion</h3>
+  <table id="previewTable" border="1">
+    <thead><tr><th>Cleaned Text</th><th>Emotion</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  
+</body>
+</html>
